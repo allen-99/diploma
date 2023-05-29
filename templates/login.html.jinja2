@@ -1,0 +1,31 @@
+{% include "header.html.jinja2" %}
+<div class="hero bg-base-200 h-full">
+  <div class="hero-content flex-col lg:flex-row-reverse">
+    <div class="text-center lg:text-left">
+      <h1 class="text-5xl font-bold">Вход</h1>
+      <p class="py-6">Войдите в аккаунт для того, чтобы пользоваться всеми функциями приложения</p>
+    </div>
+    <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+      <div class="card-body">
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Логин</span>
+          </label>
+          <input type="text" placeholder="Введите логин" class="input input-bordered" />
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Пароль</span>
+          </label>
+          <input type="password" placeholder="Введите пароль" class="input input-bordered" />
+          <label class="label">
+            <a href="{% url 'signup' %}" class="label-text-alt link link-hover">Нет аккаунта? Зарегестрируйтесь!</a>
+          </label>
+        </div>
+        <div class="form-control mt-6">
+          <button class="btn btn-primary">Войти!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

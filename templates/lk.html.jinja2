@@ -1,0 +1,22 @@
+{% include "layout.html.jinja2" %}
+<div class="pt-10 md:px-20 px-5">
+    <div>
+        <p class="text-4xl mb-4">Добро пожаловать, Димон!</p>
+        <p class="text-xl">Здесь вы можете добавить
+            информацию об интересующей вас компании, просмотреть, анализ каких компаний уже доступен на платформе,
+            добавить собственные темы, а также провести анализ вашей компании!
+        </p>
+        <p class="text-xl">
+            Вы можете провести анализ только тех компаний, для которых загружены отзывы.
+            Если вы хотите повысить точность, вы можете добавить отзывы с проставленным для них
+            рейтингом и обучить на них алгоритм оценки имиджа компаний.
+        </p>
+    </div>
+    <div class="grid grid-cols-2 gap-5 md:mt-40 mt-10">
+        <button class="btn btn-outline"  onclick="location.href='{% url 'theme' %}'">Список тем</button>
+        <button class="btn btn-outline btn-accent" onclick="location.href='{% url 'company' %}'">Список компаний</button>
+        <button class="btn btn-accent btn-lg col-span-2" onclick="location.href='{% url 'request' %}'">Провести анализ</button>
+        <button class="btn">Добавить отзывы для обучения</button>
+        <button class="btn">Обучить алгоритм</button>
+    </div>
+</div>

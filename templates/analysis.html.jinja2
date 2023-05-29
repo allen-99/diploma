@@ -1,0 +1,48 @@
+{% include "layout.html.jinja2" %}
+<div class="pt-10 md:px-20 px-5 grid justify-items-center">
+    <h3 class="text-xl font-bold">Создать запрос</h3>
+    <p class="text-lg">
+        Здесь вы можете составить запрос для оценки имиджа компании, по определенным темам.
+    </p>
+    <div class="form-control w-full mt-2 max-w-xl">
+        <label class="mt-4 text-xl">Выберите компанию для оценки</label>
+        <select class="select w-full select-bordered my-2">
+          <option disabled selected>Компании</option>
+          <option>Homer</option>
+          <option>Marge</option>
+          <option>Bart</option>
+          <option>Lisa</option>
+          <option>Maggie</option>
+        </select>
+        <label class="mt-4 text-xl">Выберите модель</label>
+        <select class="select w-full select-bordered my-2">
+          <option disabled selected>Модели</option>
+          <option>Homer</option>
+          <option>Marge</option>
+          <option>Bart</option>
+          <option>Lisa</option>
+          <option>Maggie</option>
+        </select>
+        <label class="mt-4 text-xl">Выберите темы для оценки</label>
+        <div class="w-full">
+          <label class="label cursor-pointer">
+            <span class="label-text">Тема 1</span>
+            <input type="checkbox" class="checkbox checkbox-accent" />
+          </label>
+            <label class="label cursor-pointer">
+            <span class="label-text">Тема 2</span>
+            <input type="checkbox" class="checkbox checkbox-accent" />
+          </label>
+            <label class="label cursor-pointer">
+            <span class="label-text">Тема 3</span>
+            <input type="checkbox" class="checkbox checkbox-accent" />
+          </label>
+        </div>
+        <label class="mt-4 text-xl">Дополнительные параметры</label>
+        <label class="label cursor-pointer">
+            <span class="label-text">Дополнительный анализ с помощью алгортмов, основанных на готовых грамматиках</span>
+            <input type="checkbox" class="checkbox checkbox-accent" />
+        </label>
+        <button class="btn btn-block w-full btn-outline btn-accent mt-4">Оценить имидж!</button>
+    </div>
+</div>

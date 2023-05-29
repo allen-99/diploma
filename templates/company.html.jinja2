@@ -1,0 +1,70 @@
+{% include "layout.html.jinja2" %}
+<div class="pt-10 md:px-20 px-5">
+    <p class="text-xl">
+        Здесь вы можете посмотреть список компаний, доступных для анализа. А также добавить компанию, чтобы оценить ее имидж!
+    </p>
+    <label class="btn btn-block md:mt-32 mt-10" for="add-modal">Добавить компанию</label>
+    <div class="overflow-x-auto mt-4 shadow-lg">
+        <table class="table table-zebra w-full">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Название компании</th>
+                <th>Описание</th>
+                <th>Добавлены отзывы?</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th class="w-4">1</th>
+                    <td>Приморский океанариум</td>
+                    <td>Рыбки, рыбки...</td>
+                    <td>Да</td>
+                    <td class="w-6">
+                        <button class="w-6">
+                            <svg class="fill-gray-400" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m9.134 19.319 11.587-11.588c.171-.171.279-.423.279-.684 0-.229-.083-.466-.28-.662l-3.115-3.104c-.185-.185-.429-.277-.672-.277s-.486.092-.672.277l-11.606 11.566c-.569 1.763-1.555 4.823-1.626 5.081-.02.075-.029.15-.029.224 0 .461.349.848.765.848.511 0 .991-.189 5.369-1.681zm-3.27-3.342 2.137 2.137-3.168 1.046zm.955-1.166 10.114-10.079 2.335 2.327-10.099 10.101z" fill-rule="nonzero"/></svg>
+                        </button>
+                    </td>
+                    <td class="w-6">
+                        <button class="w-6">
+                            <svg class="fill-red-400" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12.002 2.005c5.518 0 9.998 4.48 9.998 9.997 0 5.518-4.48 9.998-9.998 9.998-5.517 0-9.997-4.48-9.997-9.998 0-5.517 4.48-9.997 9.997-9.997zm0 1.5c-4.69 0-8.497 3.807-8.497 8.497s3.807 8.498 8.497 8.498 8.498-3.808 8.498-8.498-3.808-8.497-8.498-8.497zm0 7.425 2.717-2.718c.146-.146.339-.219.531-.219.404 0 .75.325.75.75 0 .193-.073.384-.219.531l-2.717 2.717 2.727 2.728c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.384-.073-.53-.219l-2.729-2.728-2.728 2.728c-.146.146-.338.219-.53.219-.401 0-.751-.323-.751-.75 0-.192.073-.384.22-.531l2.728-2.728-2.722-2.722c-.146-.147-.219-.338-.219-.531 0-.425.346-.749.75-.749.192 0 .385.073.531.219z" fill-rule="nonzero"/></svg>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        <input type="checkbox" id="add-modal" class="modal-toggle" />
+    <label for="add-modal" class="modal cursor-pointer">
+      <label class="modal-box relative form-control" for="" >
+        <h3 class="text-lg font-bold">Добавить новую компанию</h3>
+        <label for="add-modal" class="btn btn-sm btn-circle absolute right-6 top-5">✕</label>
+        <label class="label">
+            <span class="label-text"> Название: </span>
+        </label>
+        <div class="w-full">
+          <input type="text" placeholder="Введите название" class="input input-bordered w-full" />
+        </div>
+          <p class="my-3">
+              Отзывы должны быть в формате csv в следующем виде:
+              <div class="mockup-code">
+                  <pre><code>"Содержание отзыва 1", дата в формате ISO</code></pre>
+                  <pre><code>"Содержание отзыва 2", дата в формате ISO</code></pre>
+                  <pre><code>...</code></pre>
+                  <pre><code>"Содержание отзыва n", дата в формате ISO</code></pre>
+              </div>
+          </p>
+        <label class="label mt-4">
+            <span class="label-text"> Отзывы о компании: </span>
+        </label>
+        <input type="file" class="file-input w-full file-input-bordered max-w-xs" />
+          <label class="label cursor-pointer">
+            <span class="label-text">Добавить компанию для всех</span>
+            <input type="checkbox" checked="checked" class="checkbox" />
+          </label>
+          <label class="btn btn-block mt-10" for="add-modal">Добавить</label>
+      </label>
+    </label>
+</div>
