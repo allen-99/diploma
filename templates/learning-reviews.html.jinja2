@@ -1,0 +1,49 @@
+{% include "layout.html.jinja2" %}
+<div class="pt-10 md:px-20 px-5">
+    <h3 class="text-xl font-bold mb-2">Добавление отзывов, для обучения модели</h3>
+    <p class="text-lg">
+        Здесь вы можете добавить отзывы о компании, которые вы собрали самостоятельно.
+        Чем больше вы собрали отзывов, тем лучше будет итоговый результат анализа.
+    </p>
+    <p class="text-lg mb-4">
+        Отзывы должны быть  загружены в формате cvs и иметь следующий вид:
+    </p>
+    <div class="mockup-code">
+        <pre><code>"Текст отзыва 1", рейтинг, дата в формате ISO</code></pre>
+        <pre><code>"Текст отзыва 2", рейтинг, дата в формате ISO</code></pre>
+        <pre><code>...</code></pre>
+        <pre><code>"Текст отзыва n", рейтинг, дата в формате ISO</code></pre>
+    </div>
+    <div class="alert shadow-lg my-2">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <span>Рейтинг - число в диапазоне от 1 до 5 включительно границы</span>
+      </div>
+    </div>
+    <div class="alert shadow-lg my-2 mb-8">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <span>Пример даты в формате ISO - 2019-05-05T10:38:20.956Z</span>
+      </div>
+    </div>
+    <div class="grid justify-items-center">
+        <label class="text-xl">Выберите компанию для добавления ей отзывов</label>
+        <select class="select w-full select-bordered my-2 max-w-xs block">
+          <option disabled selected>Компании</option>
+          <option>Homer</option>
+          <option>Marge</option>
+          <option>Bart</option>
+          <option>Lisa</option>
+          <option>Maggie</option>
+        </select>
+        <label class="text-xl">Введите название для данного набора отзывов</label>
+        <input type="text" placeholder="Название набора отзывов"
+               class="input input-bordered w-full max-w-xs block my-2"
+        />
+
+        <label class="mt-4 text-xl">Прикрепите файл с отзывами в формате csv</label>
+        <input type="file" class="file-input file-input-bordered w-full max-w-xs block my-2" />
+        <button class="btn btn-block w-full max-w-xs btn-outline btn-accent mt-4">Добавить отзывы</button>
+    </div>
+
+</div>

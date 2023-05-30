@@ -25,3 +25,8 @@ def company(request):
 def request(request):
     return render(request, 'analysis.html.jinja2', {})
 
+def learning_reviews(request):
+    return render(request, 'learning-reviews.html.jinja2', {})
+
+def learning(request):
+    return render(request, 'learning.html.jinja2', {})

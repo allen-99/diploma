@@ -1,0 +1,25 @@
+{% include "layout.html.jinja2" %}
+<div class="pt-10 md:px-20 px-5">
+    <p class="text-xl my-4">
+        Здесь вы можете обучить одну из предложенных вам моделей для оценки тональности текстов отзывов.
+        Для достижения более точных результатов рекомендуется.
+    </p>
+    <p class="text-xl my-4">
+        Обучение модели может занять некоторое время. До тех пор, пока она не будет готова ее использование невозможно.
+    </p>
+    <div class="grid justify-items-center">
+        <label class="text-xl">Выберите модель для обучения</label>
+        <select class="select w-full select-bordered my-2 max-w-xs block">
+          <option disabled selected>Модель</option>
+          <option>SVM</option>
+          <option>Наивный Байесовский классификатор</option>
+        </select>
+        <label class="text-xl">Выберите набор отзыва для обучения</label>
+        <select class="select w-full select-bordered my-2 max-w-xs block">
+          <option disabled selected>Набор отзывов</option>
+          <option>SVM</option>
+          <option>Наивный Байесовский классификатор</option>
+        </select>
+        <button class="btn btn-block w-full max-w-xs btn-outline btn-accent mt-4">Обучить</button>
+    </div>
+</div>
