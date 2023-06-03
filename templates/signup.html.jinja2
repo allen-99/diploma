@@ -1,37 +1,54 @@
 {% include "header.html.jinja2" %}
 <div class="hero bg-base-200 h-full">
-  <div class="hero-content flex-col lg:flex-row-reverse">
-    <div class="text-center lg:text-left">
-      <h1 class="text-5xl font-bold">Регистрация</h1>
-      <p class="py-6">Для использования всех функций приложения необходимо зарегистрироваться</p>
+    <div class="hero-content flex-col lg:flex-row-reverse">
+        <div class="text-center lg:text-left">
+            <h1 class="text-5xl font-bold">Регистрация</h1>
+            <p class="py-6">Для использования всех функций приложения необходимо зарегистрироваться</p>
+        </div>
+        <form method="post" class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+            {% csrf_token %}
+            <div class="card-body">
+                {% if form.errors %}
+                    ошибка емае
+                {% endif %}
+                <label class="label" for="username">
+                    <span class="label-text">Логин</span>
+                    <input type="text"
+                           class="input input-bordered"
+                           placeholder="Введите логин"
+                           name="username"
+                    >
+                </label>
+
+                <label class="label" for="first_name">
+                    <span class="label-text">Имя</span>
+                    <input type="text"
+                           placeholder="Введите имя"
+                           class="input input-bordered"
+                           name="first_name"
+
+                    />
+                </label>
+
+                <label class="label" for="password">
+                    <span class="label-text">Пароль</span>
+                    <input type="password" placeholder="Введите пароль" class="input input-bordered"
+                           name="password"
+                           required/>
+                </label>
+                <label class="label" for="password2">
+                    <span class="label-text">Пароль</span>
+                    <input type="password" placeholder="Введите пароль еще раз" class="input input-bordered"
+                           name="password2"
+                           required/>
+                </label>
+                <label class="label">
+                    <a href="{% url 'login' %}" class="label-text-alt link link-hover">Уже есть аккаунт?</a>
+                </label>
+                <div class="form-control mt-6">
+                    <button type="submit" class="btn btn-primary">Зарегестрироваться!</button>
+                </div>
+            </div>
+        </form>
     </div>
-    <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-      <div class="card-body">
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text">Логин</span>
-          </label>
-          <input type="text" placeholder="Введите логин" class="input input-bordered" />
-        </div>
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text">Пароль</span>
-          </label>
-          <input type="password" placeholder="Введите пароль" class="input input-bordered" />
-        </div>
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text">Пароль</span>
-          </label>
-          <input type="password" placeholder="Введите пароль еще раз" class="input input-bordered" />
-          <label class="label">
-            <a href="{% url 'login' %}" class="label-text-alt link link-hover">Уже есть аккаунт?</a>
-          </label>
-        </div>
-        <div class="form-control mt-6">
-          <button class="btn btn-primary">Зарегестрироваться!</button>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
