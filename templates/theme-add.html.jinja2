@@ -1,0 +1,26 @@
+{% include "layout.html.jinja2" %}
+<div class="pt-10 md:px-20 px-5">
+    <h3 class="text-lg font-bold">Добавить новую тему</h3>
+    <label for="add-modal" class="btn btn-sm btn-circle absolute right-6 top-5">✕</label>
+    <form method="post">
+        {% csrf_token %}
+        <p class="my-3">
+            Ключевые слова должны быть записаны через запятую, с маленькой буквы!
+        </p>
+        <label>
+            <div class="label-text block"> Название:</div>
+            <input type="text" name="theme_name" placeholder="Введите название"
+                   class="input input-bordered w-full" required/>
+        </label>
+        <label>
+            <div class="label-text block mt-4"> Ключевые слова:</div>
+            <textarea class="textarea textarea-bordered w-full" name="theme_description"
+                      placeholder="Введите ключевые слова для данной темы" required></textarea>
+        </label>
+        <label class="label cursor-pointer">
+            <div class="label-text block mt-4">Сделать тему для всех пользователей доступной</div>
+            <input type="checkbox" checked="checked" class="checkbox" name="is_public"/>
+        </label>
+        <button type="submit" class="btn btn-block mt-10 form-control">Добавить</button>
+    </form>
+</div>
