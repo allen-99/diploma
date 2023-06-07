@@ -1,7 +1,6 @@
 {% include "layout.html.jinja2" %}
 <div class="pt-10 md:px-20 px-5">
     <h3 class="text-lg font-bold">Добавить новую тему</h3>
-    <label for="add-modal" class="btn btn-sm btn-circle absolute right-6 top-5">✕</label>
     <form method="post">
         {% csrf_token %}
         <p class="my-3">

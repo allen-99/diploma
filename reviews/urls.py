@@ -14,8 +14,10 @@ urlpatterns = [
     path('themeadd', views.themeadd, name='themeadd'),
     path('delete/<int:row_id>/', views.delete_row, name='delete_row'),
     path('company', views.company, name='company'),
+    path('companyadd', views.companyadd, name='companyadd'),
     path('request', views.request, name='request'),
     path('reviews', views.learning_reviews, name='reviews'),
+    path('reviewsadd', views.reviewsadd, name='reviewsadd'),
     path('learning', views.learning, name='learning'),
     path('logout', LogoutView.as_view(next_page='', template_name='main_page.html.jinja2'), name='logout'),
 ]
