@@ -28,6 +28,8 @@ class SetOfText(models.Model):
     name = models.CharField(max_length=100, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    is_learning = models.BooleanField(default=False)
+    is_public = models.BooleanField(default=False)
 
 
 class Text(models.Model):
@@ -40,6 +42,14 @@ class Text(models.Model):
 
     def __str__(self):
         return str(self.text_id) + '. ' + self.text[:100]
+
+
+class Model(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    type = models.TextField(max_length=1000)
+    name = models.TextField(max_length=100000)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    parameters = models.TextField()
 
 
 class ReviewTextBlock(models.Model):

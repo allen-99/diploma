@@ -26,7 +26,7 @@ pymorphy2-dicts-ru==2.4.417127.4579844
 pymorphy3==1.2.0
 pymorphy3-dicts-ru==2.4.417150.4580142
 requests==2.28.2
-ru-core-news-sm @ https://github.com/explosion/spacy-models/releases/download/ru_core_news_sm-3.5.0/ru_core_news_sm-3.5.0-py3-none-any.whl
+ru-core-news-sm@ https://github.com/explosion/spacy-models/releases/download/ru_core_news_sm-3.5.0/ru_core_news_sm-3.5.0-py3-none-any.whl
 smart-open==6.3.0
 sortedcontainers==2.4.0
 spacy==3.5.0
@@ -41,3 +41,5 @@ typing_extensions==4.5.0
 urllib3==1.26.14
 wasabi==1.1.1
 yargy==0.15.1
+
+nltk~=3.8.1

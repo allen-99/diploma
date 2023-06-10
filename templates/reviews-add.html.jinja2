@@ -1,8 +1,8 @@
 {% include "layout.html.jinja2" %}
 <div class="pt-10 md:px-20 px-5 py-10">
-    <h3 class="text-lg font-bold">Добавить набор отзывов о компании</h3>
+    <h3 class="text-xl font-bold">Добавить набор отзывов о компании</h3>
     Отзывы должны быть в формате csv в следующем виде:
-    <div class="mockup-code">
+    <div class="mockup-code mt-4">
         <pre><code>"Содержание отзыва 1", дата в формате '%Y-%m-%d %H:%M:%S.%f'</code></pre>
         <pre><code>"Содержание отзыва 2", дата в формате '%Y-%m-%d %H:%M:%S.%f'</code></pre>
         <pre><code>...</code></pre>
@@ -11,7 +11,7 @@
     <form method="post" class="mt-4" enctype="multipart/form-data">
         {% csrf_token %}
         <label class="label mt-4">
-            <span class="label-text"> Выберите компанию: </span>
+            <span class="label-text text-xl"> Выберите компанию: </span>
             <select class="select select-bordered w-full max-w-xs" required name="company_id">
                 <option disabled selected>Компания</option>
                 {% for company in companies %}
@@ -20,13 +20,17 @@
             </select>
         </label>
         <label class="label mt-4">
-            <span class="label-text"> Название для набора: </span>
+            <span class="label-text text-xl"> Название для набора: </span>
             <input type="text" class="input input-bordered w-full max-w-xs" required name="name"/>
         </label>
         <label class="label mt-4">
-            <span class="label-text"> Отзывы о компании: </span>
+            <span class="label-text text-xl"> Отзывы о компании: </span>
             <input type="file" name="reviews" class="file-input w-full file-input-bordered max-w-xs" accept=".csv"
                    required/>
+        </label>
+        <label class="label cursor-pointer mt-4">
+            <span class="label-text text-xl">Сделать набор отзывов доступным для всех пользователей</span>
+            <input type="checkbox" checked="checked" class="checkbox" name="is_public"/>
         </label>
         <button type="submit" class="btn btn-block mt-10 form-control">Добавить</button>
     </form>

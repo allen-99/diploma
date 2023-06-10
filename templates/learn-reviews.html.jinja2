@@ -1,45 +1,27 @@
 {% include "layout.html.jinja2" %}
 <div class="pt-10 md:px-20 px-5">
     <p class="text-xl">
-        Здесь вы можете посмотреть список существующих тем.
-        Каждая тема описывается своими включевыми словами, чем больше слов, тем выше шанс определить тему в тексте.
+        Здесь вы можете посмотреть список наборов отзывов для обучения модели анализа тональности текста.
     </p>
-    <a href="{% url 'themeadd' %}" class="btn btn-block md:mt-32 mt-10">Добавить тему</a>
-    <div class="alert alert-warning shadow-lg md:mt-4 mt-2">
-        <div>
-            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
-                 viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-            </svg>
-            <span> <b>Важно:</b> ключевые слова по возможности должны быть записаны с маленькой буквы,
-            через запятую, в единственном числе / роде / падеже.
-        </span>
-        </div>
-    </div>
+    <a href="{% url 'reviews' %}" class="btn btn-block md:mt-32 mt-10">Добавить набор отзывов</a>
+
     <div class="overflow-x-auto mt-4 shadow-lg">
         <table class="table table-zebra w-full">
             <thead>
             <tr>
                 <th></th>
-                <th>Название темы</th>
-                <th>Ключевые слова</th>
+                <th>Название набора отзыов</th>
                 <th>Общий доступ</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
-            {% for theme in themes %}
+            {% for set in set_of_texts %}
                 <tr>
-                    <th class="w-4">{{ theme.theme_id }}</th>
-                    <td>{{ theme.theme_name }}</td>
-                    <td class="">
-                        <div class="whitespace-normal">
-                            {{ theme.theme_description }}
-                        </div>
-                    </td>
+                    <th class="w-4">{{ set.id }}</th>
+                    <th class="w-8">{{ set.name }}</th>
                     <td class="w-6">
-                        {% if theme.is_public %}
+                        {% if set.is_public %}
                             <svg class="fill-gray-400 w-6" clip-rule="evenodd" fill-rule="evenodd"
                                  stroke-linejoin="round" stroke-miterlimit="2"
                                  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -49,7 +31,7 @@
                         {% endif %}
                     </td>
                     <td class="w-6">
-                        <form method="post" action="{% url 'delete_theme' theme.theme_id %}">
+                        <form method="post" action="{% url 'delete_reviews' set.set_id %}">
                             {% csrf_token %}
                             <button class="w-6" type="submit">
                                 <svg class="fill-red-400" clip-rule="evenodd" fill-rule="evenodd"
@@ -66,6 +48,4 @@
             </tbody>
         </table>
     </div>
-
 </div>
-

@@ -5,21 +5,31 @@
         Для достижения более точных результатов рекомендуется.
     </p>
     <p class="text-xl my-4">
-        Обучение модели может занять некоторое время. До тех пор, пока она не будет готова ее использование невозможно.
+        Обучение модели может занять некоторое время. До тех пор пока она не будет готова, ее использование невозможно.
     </p>
-    <div class="grid justify-items-center">
-        <label class="text-xl">Выберите модель для обучения</label>
-        <select class="select w-full select-bordered my-2 max-w-xs block">
-          <option disabled selected>Модель</option>
-          <option>SVM</option>
-          <option>Наивный Байесовский классификатор</option>
-        </select>
-        <label class="text-xl">Выберите набор отзыва для обучения</label>
-        <select class="select w-full select-bordered my-2 max-w-xs block">
-          <option disabled selected>Набор отзывов</option>
-          <option>SVM</option>
-          <option>Наивный Байесовский классификатор</option>
-        </select>
-        <button class="btn btn-block w-full max-w-xs btn-outline btn-accent mt-4">Обучить</button>
-    </div>
+    <form method="post">
+        {% csrf_token %}
+        <label class="label mt-4">
+            <span class="label-text text-xl"> Название для обученной модели: </span>
+            <input type="text" class="input input-bordered w-full max-w-xs" required name="name"/>
+        </label>
+        <label class="label text-xl">
+            <span class="label-text  text-xl">Выберите алгоритм для обучения: </span>
+            <select class="select w-full select-bordered my-2 max-w-xs block" required name="algorithm">
+                <option disabled selected>Алгоритм</option>
+                <option value="bayes">SVM</option>
+                <option value="svm">Наивный Байесовский классификатор</option>
+            </select>
+        </label>
+        <label class="label text-xl">
+            <span class="label-text text-xl">Выберите набор отзыва для обучения: </span>
+            <select class="select w-full select-bordered my-2 max-w-xs block" name="set_of_text" required>
+                <option disabled selected>Набор отзывов</option>
+                {% for set in set_of_texts %}
+                    <option value="{{ set.set_id }}" name="set">{{ set.name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <button type="submit" class="btn btn-block w-full btn-outline btn-accent mt-4">Обучить</button>
+    </form>
 </div>
