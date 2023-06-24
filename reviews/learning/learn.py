@@ -51,7 +51,7 @@ def create_bag_of_words(text):
 
 class Learn:
 
-    def learn(name, algorithm, set_of_text):
+    def learn(self, name, algorithm, set_of_text):
         warnings.filterwarnings('ignore')
         reviews = Text.objects.filter(set=set_of_text)
         data = pd.DataFrame(reviews.values('text', 'rating', 'date'))
@@ -103,15 +103,3 @@ class Learn:
             model.type = algorithm
             model.parameters = svc_params_result
             model.save()
-            
-            # svm = SVC(**svc_params_result, probability=True)
-            # svm.fit(X_train, y_train)
-            #
-            # y_pred = svm.predict(X_test)
-            # y_score = svm.predict_proba(X_test)
-            #
-            # accuracy = accuracy_score(y_test, y_pred)
-            # precision = precision_score(y_test, y_pred, average='weighted')
-            #
-            # print("Precision: {:.2f}".format(precision))
-            # print('Accuracy: {:.2f}'.format(accuracy))

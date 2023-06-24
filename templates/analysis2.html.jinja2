@@ -1,0 +1,46 @@
+{% include "layout.html.jinja2" %}
+<div class="pt-10 md:px-20 px-5">
+    <h3 class="text-xl font-bold">Оценка имиджа компании {{ company.company_name }}</h3>
+
+    <form class="form-control w-full mt-2" method="post">
+        {% csrf_token %}
+        <label class="mt-4 label px-0">
+            <span class="label-text text-xl"> Выберите обученную модель: </span>
+            <select class="select w-full select-bordered my-2 max-w-md block" name="model" required>
+                <option disabled selected>Модель</option>
+                {% for model in models %}
+                    <option value="{{ model.id }}">{{ model.name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label class="my-4 text-xl">Выберите наборы отзывов о данной компании для оценки:</label>
+        <div class="w-full">
+            {% for set in set_of_texts %}
+                <label class="label cursor-pointer px-0">
+                    <span class="text-md">{{ set.name }}</span>
+                    <input type="checkbox"
+                           class="checkbox checkbox-accent"
+                           name="sets"
+                           value="{{ set.set_id }}"
+                    />
+                </label>
+            {% endfor %}
+        </div>
+        <label class="my-4 text-xl">Выберите темы, по которым будет проведен анализ:</label>
+        <div class="w-full">
+            {% for theme in themes %}
+                <label class="label cursor-pointer px-0">
+                    <span class="text-md">{{ theme.theme_name }}</span>
+                    <input type="checkbox"
+                           class="checkbox checkbox-accent"
+                           name="themes"
+                           value="{{ theme.theme_id }}"
+                    />
+                </label>
+            {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-block w-full btn-outline btn-accent mt-4">
+            Оценить имидж
+        </button>
+    </form>
+</div>

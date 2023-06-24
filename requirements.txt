@@ -43,3 +43,7 @@ wasabi==1.1.1
 yargy==0.15.1
 
 nltk~=3.8.1
+pandas~=2.0.2
+scikit-learn~=1.2.2
+pytz~=2023.3
+joblib~=1.2.0

@@ -50,13 +50,15 @@ class Model(models.Model):
     name = models.TextField(max_length=100000)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     parameters = models.TextField()
+    model_data = models.FileField(upload_to='models/', null=True)
+    vectorizer = models.FileField(upload_to='models/vect/', null=True)
 
 
 class ReviewTextBlock(models.Model):
     block_id = models.BigAutoField(primary_key=True)
     text = models.ForeignKey(Text, on_delete=models.CASCADE)
     theme = models.ForeignKey(Theme, on_delete=models.CASCADE)
-    textBlock = models.TextField(max_length=255, blank=True)
+    textBlock = models.TextField(max_length=10000, blank=True)
     sa_value = models.FloatField()
 
     def __str__(self):

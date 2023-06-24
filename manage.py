@@ -18,5 +18,13 @@ def main():
     execute_from_command_line(sys.argv)
 
 
+def create_bag_of_words(text):
+    text_split = text.split()
+    bag_of_words = {}
+    for token in text_split:
+        bag_of_words[token] = bag_of_words.get(token, 0) + 1
+    return bag_of_words
+
+
 if __name__ == '__main__':
     main()

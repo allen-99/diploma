@@ -1,6 +1,6 @@
 {% include "layout.html.jinja2" %}
 <div class="pt-10 md:px-20 px-5">
-    <h3 class="text-xl font-bold">Создать запрос</h3>
+    <h3 class="text-xl font-bold">Выберите компанию</h3>
     <p class="text-lg">
         Здесь вы можете составить запрос для оценки имиджа компании, по определенным темам.
     </p>
@@ -8,38 +8,14 @@
         {% csrf_token %}
         <label class="mt-4 label px-0">
             <span class="label-text text-xl"> Выберите компанию для оценки: </span>
-            <select class="select w-full select-bordered my-2 max-w-md block">
+            <select class="select w-full select-bordered my-2 max-w-md block" name="company">
                 <option disabled selected>Компания</option>
                 {% for company in companies %}
-                    <option value="{{ company.company_id }}" name="company">{{ company.company_name }}</option>
+                    <option value="{{ company.company_id }}">{{ company.company_name }}</option>
                 {% endfor %}
             </select>
         </label>
-        <label class="mt-4 label px-0">
-            <span class="label-text text-xl"> Выберите обученную модель: </span>
-            <select class="select w-full select-bordered my-2 max-w-md block">
-                <option disabled selected>Модель</option>
-                {% for model in models %}
-                    <option value="{{ model.id }}">{{ model.name }}</option>
-                {% endfor %}
-            </select>
-        </label>
-        <label class="my-4 text-xl">Выберите темы для оценки:</label>
-        <div class="w-full h-48 overflow-y-scroll">
-            {% for theme in themes %}
-                <label class="label cursor-pointer px-0">
-                    <span class="text-md">{{ theme.theme_name }}</span>
-                    <input type="checkbox" class="checkbox checkbox-accent"/>
-                </label>
-            {% endfor %}
-        </div>
-        <label class="mt-4 text-xl">Дополнительные параметры</label>
-        <label class="label cursor-pointer px-0">
-            <span class="label-text">
-                Дополнительный анализ с помощью алгортмов анализа тональности текстов, основанных на готовых грамматиках
-            </span>
-            <input type="checkbox" class="checkbox checkbox-accent"/>
-        </label>
-        <button class="btn btn-block w-full btn-outline btn-accent mt-4">Оценить имидж</button>
+        <button class="btn btn-block w-full btn-outline btn-accent mt-4">Продолжить</button>
+
     </form>
 </div>

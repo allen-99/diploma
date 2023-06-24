@@ -1,34 +1,21 @@
 {% include "layout.html.jinja2" %}
 <div class="pt-10 md:px-20 px-5">
-    <p class="text-xl">
-        Здесь вы можете посмотреть список компаний, доступных для анализа. А также добавить компанию, чтобы оценить ее
-        имидж!
-    </p>
-    <a href="{% url 'companyadd' %}" class="btn btn-block md:mt-32 mt-10" for="add-modal">Добавить компанию</a>
-    <a href="{% url 'reviewsadd' %}" class="btn btn-block mt-2" for="add-modal">Добавить отзывы о компании</a>
-
+    <h3 class="text-xl font-bold">Название компании: {{ company.company_name }}</h3>
     <div class="overflow-x-auto mt-4 shadow-lg">
         <table class="table table-zebra w-full">
             <thead>
             <tr>
-                <th></th>
-                <th>Название компании</th>
-                <th>Добавлен хоть один набор отзывов</th>
+                <th>Название набора отзыов</th>
                 <th>Общий доступ</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
-            {% for company in companies %}
+            {% for set in sets %}
                 <tr>
-                    <th class="w-4">{{ company.company_id }}</th>
-                    <th class="w-8">
-                        <button onclick="location.href='{% url 'companyinfo' company.company_id %}'">
-                            {{ company.company_name }}
-                        </button>
-                    </th>
-                    <td class="w-4">
-                        {% if company.has_reviews %}
+                    <th class="w-8">{{ set.name }}</th>
+                    <td class="w-6">
+                        {% if set.is_public %}
                             <svg class="fill-gray-400 w-6" clip-rule="evenodd" fill-rule="evenodd"
                                  stroke-linejoin="round" stroke-miterlimit="2"
                                  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -38,17 +25,7 @@
                         {% endif %}
                     </td>
                     <td class="w-6">
-                        {% if company.is_public %}
-                            <svg class="fill-gray-400 w-6" clip-rule="evenodd" fill-rule="evenodd"
-                                 stroke-linejoin="round" stroke-miterlimit="2"
-                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="m11.998 2.005c5.517 0 9.997 4.48 9.997 9.997 0 5.518-4.48 9.998-9.997 9.998-5.518 0-9.998-4.48-9.998-9.998 0-5.517 4.48-9.997 9.998-9.997zm0 1.5c-4.69 0-8.498 3.807-8.498 8.497s3.808 8.498 8.498 8.498 8.497-3.808 8.497-8.498-3.807-8.497-8.497-8.497zm-5.049 8.886 3.851 3.43c.142.128.321.19.499.19.202 0 .405-.081.552-.242l5.953-6.509c.131-.143.196-.323.196-.502 0-.41-.331-.747-.748-.747-.204 0-.405.082-.554.243l-5.453 5.962-3.298-2.938c-.144-.127-.321-.19-.499-.19-.415 0-.748.335-.748.746 0 .205.084.409.249.557z"
-                                      fill-rule="nonzero"/>
-                            </svg>
-                        {% endif %}
-                    </td>
-                    <td class="w-6">
-                        <form method="post" action="{% url 'delete_company' company.company_id %}">
+                        <form method="post" action="{% url 'delete_reviews_company' set.set_id %}">
                             {% csrf_token %}
                             <button class="w-6" type="submit">
                                 <svg class="fill-red-400" clip-rule="evenodd" fill-rule="evenodd"
@@ -61,9 +38,10 @@
                         </form>
                     </td>
                 </tr>
-
             {% endfor %}
             </tbody>
         </table>
     </div>
+    <button class="btn btn-outline mt-4" onclick="location.href='{% url 'company' %}'">Назад</button>
+
 </div>

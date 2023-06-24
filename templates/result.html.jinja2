@@ -1,0 +1,116 @@
+{% include "layout.html.jinja2" %}
+<div id="data" data-value="{{ sa_counts }}"></div>
+<div id="date_data" data-value="{{ date_dynamic }}"></div>
+<div id="all_sa" data-value="{{ all_sa }}"></div>
+<div id="all_date" data-value="{{ all_date }}"></div>
+<div class="pt-10 md:px-24 px-5">
+    <h3 class="text-xl font-bold mb-2">Результат оценки имиджа компании {{ company.company_name }}</h3>
+    <p class="text-lg mb-2">
+        Общий рейтинг компании: {{ mean }}
+    </p>
+    <div class="flex mb-8">
+        <div id="all_sa_graphic" style="width:500px;height:400px;background: transparent"></div>
+        <div id="all_date_graphic" style="width:600px;height:400px;background: transparent"></div>
+    </div>
+    <br/>
+    {% for theme, sa_value in themes_sa %}
+        <h3 class="text-xl font-bold mt-2"> Тема: {{ theme }}</h3>
+        <p class="text-lg">
+            Рейтинг компании по данной теме: {{ sa_value }}
+        </p>
+        <div class="flex">
+            <div id="{{ forloop.counter }}" style="width:500px;height:400px;background: transparent"></div>
+            <div id="date{{ forloop.counter }}" style="width:600px;height:400px;background: transparent"></div>
+        </div>
+    {% endfor %}
+</div>
+
+<script>
+    const sa_counts = JSON.parse(document.getElementById('data').getAttribute('data-value'));
+    sa_counts.forEach((theme_sa, index) => {
+        const graph = document.getElementById((index + 1).toString());
+        const data = [{
+            labels: theme_sa[0],
+            values: theme_sa[1],
+            type: 'pie'
+        }];
+
+        const layout = {
+            title: 'Соотношение отношения потребителей к компании',
+            paper_bgcolor: 'transparent',
+            height: 400,
+            width: 500,
+            font: {
+                color: '#a6adbb'
+            }
+        }
+        Plotly.newPlot(graph, data, layout, {displayModeBar: false});
+    });
+    const date_data = JSON.parse(document.getElementById('date_data').getAttribute('data-value'));
+    date_data.forEach((dat, index) => {
+            const xData = dat[0].split(',').map(dateStr => new Date(dateStr));
+            const graph = document.getElementById('date' + (index + 1).toString());
+            const data = [{
+                x: xData,
+                y: dat[1],
+                type: 'scatter',
+                line: {
+                    color: '#fede7c'
+                },
+            }]
+            const layout = {
+                title: 'Изменение имиджа компании в течении времени',
+                paper_bgcolor: 'transparent',
+                plot_bgcolor: 'transparent',
+                height: 400,
+                width: 600,
+                font: {
+                    color: '#a6adbb'
+                },
+            }
+            Plotly.newPlot(graph, data, layout, {displayModeBar: false});
+        }
+    )
+
+    const all_sa = JSON.parse(document.getElementById('all_sa').getAttribute('data-value'));
+    const all_date = JSON.parse(document.getElementById('all_date').getAttribute('data-value'));
+    const graph_all_sa = document.getElementById('all_sa_graphic');
+    const data_all__sa = [{
+        labels: all_sa[0],
+        values: all_sa[1],
+        type: 'pie'
+    }];
+
+    const layout_all_sa = {
+        title: 'Соотношение отношения потребителей к компании',
+        paper_bgcolor: 'transparent',
+        height: 400,
+        width: 500,
+        font: {
+            color: '#a6adbb'
+        }
+    }
+    Plotly.newPlot(graph_all_sa, data_all__sa, layout_all_sa, {displayModeBar: false});
+
+    const xData_all_date = all_date[0].split(',').map(dateStr => new Date(dateStr));
+    const graph_all_date = document.getElementById('all_date_graphic');
+    const data_all_date = [{
+        x: xData_all_date,
+        y: all_date[1],
+        type: 'scatter',
+        line: {
+            color: '#fede7c'
+        },
+    }]
+    const layout_all_date = {
+        title: 'Общее изменение имиджа компании в течении времени',
+        paper_bgcolor: 'transparent',
+        plot_bgcolor: 'transparent',
+        height: 400,
+        width: 600,
+        font: {
+            color: '#a6adbb'
+        },
+    }
+    Plotly.newPlot(graph_all_date, data_all_date, layout_all_date, {displayModeBar: false});
+</script>
