@@ -80,14 +80,15 @@ class Learn:
             model.name = name
             model.type = algorithm
             model.parameters = svc_params_result
-            joblib.dump(grid_search_kernel, f"{name}.pkl")
-            joblib.dump(vectorizer, f"vect/{name}.pkl")
-            data = joblib.load(f"{name}.pkl")
-            vect = joblib.load(f"vect/{name}.pkl")
-            model.vectorizer.save(f"vect/{name}.pkl", vect, save=True)
-            model.model_data.save(f"{name}.pkl", data, save=True)
+            joblib.dump(grid_search_kernel, f"models/{name}.pkl")
+            joblib.dump(vectorizer, f"models/vect/{name}.pkl")
+            model.model_data.name = f"models/{name}.pkl"
+            model.vectorizer.name = f"models/vect/{name}.pkl"
+            with open(f"models/{name}.pkl", 'rb') as f:
+                model.model_data.save("models/{name}.pkl", f, save=True)
+            with open(f"models/vect/{name}.pkl", 'rb') as f:
+                model.vectorizer.save("models/vect/{name}.pkl", f, save=True)
             model.save()
-
         else:
             counts = data['rating'].value_counts()
             counts = counts.sort_index()
@@ -109,10 +110,10 @@ class Learn:
             model.name = name
             model.type = algorithm
             model.parameters = svc_params_result
-            joblib.dump(grid_bayes, f"{name}.pkl")
-            joblib.dump(vectorizer, f"vect/{name}.pkl")
-            data = joblib.load(f"{name}.pkl")
-            vect = joblib.load(f"vect/{name}.pkl")
-            model.vectorizer.save(f"vect/{name}.pkl", vect, save=True)
-            model.model_data.save(f"{name}.pkl", data, save=True)
+            joblib.dump(grid_bayes, f"models/{name}.pkl")
+            joblib.dump(vectorizer, f"models/vect/{name}.pkl")
+            data = joblib.load(f"models/{name}.pkl")
+            vect = joblib.load(f"models/vect/{name}.pkl")
+            model.vectorizer.path(f"models/vect/{name}.pkl")
+            model.model_data.save(f"models/{name}.pkl", data, save=True)
             model.save()
