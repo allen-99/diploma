@@ -20,11 +20,10 @@
               rounded-box w-52
               right-0
       ">
-                <li><a>Список тем</a></li>
-                <li><a>Список компаний</a></li>
-                <li><a>Провести анализ</a></li>
-                <li><a>Добавить отзывы для анализа</a></li>
-                <li><a>Добавить отзывы для обучения</a></li>
+                <li><a href='{% url 'theme' %}'>Список тем</a></li>
+                <li><a href='{% url 'company' %}'>Список компаний</a></li>
+                <li><a href='{% url 'request' %}'>Провести анализ</a></li>
+                <li><a href='{% url 'learnreviews' %}'>Добавить отзывы для обучения</a></li>
                 <li><a href="{% url "logout" %}">Выйти</a></li>
             </ul>
         </div>

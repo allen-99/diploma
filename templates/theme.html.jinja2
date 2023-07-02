@@ -21,7 +21,6 @@
         <table class="table table-zebra w-full">
             <thead>
             <tr>
-                <th></th>
                 <th>Название темы</th>
                 <th>Ключевые слова</th>
                 <th>Общий доступ</th>
@@ -31,7 +30,6 @@
             <tbody>
             {% for theme in themes %}
                 <tr>
-                    <th class="w-4">{{ theme.theme_id }}</th>
                     <td>{{ theme.theme_name }}</td>
                     <td class="">
                         <div class="whitespace-normal">

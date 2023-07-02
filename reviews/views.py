@@ -2,6 +2,7 @@ import csv
 import json
 from datetime import datetime
 
+import maya
 import numpy as np
 import pytz
 from django.contrib.auth import get_user
@@ -152,13 +153,20 @@ def reviewsadd(request):
             for review in reviews:
                 new_review = Text()
                 new_review.text = review['text']
+                print(review['date'])
                 try:
-                    new_review.date = datetime.strptime(review['date'], '%Y-%m-%dT%H:%M:%S.%fZ')
+                    dt = maya.parse(review['date']).datetime()
+                    new_review.date = dt.date()
                 except:
-                    new_review.date = datetime.strptime(review['date'], '%Y-%m-%dT%H:%M:%S%fZ')
+                    try:
+                        new_review.date = datetime.strptime(review['date'], '%Y-%m-%dT%H:%M:%S.%fZ')
+                    except:
+                        new_review.date = datetime.strptime(review['date'], '%Y-%m-%dT%H:%M:%S%fZ')
+
                 new_review.company = company
                 new_review.set = set_of_text
                 new_review.save()
+        
         return redirect('company')
 
     return render(request, 'reviews-add.html.jinja2', {'companies': companies})
@@ -335,7 +343,8 @@ def learning(request):
         name = request.POST.get('name')
         algorithm = request.POST.get('algorithm')
         set_of_text = request.POST.get('set_of_text')
-        Learn.learn(name, algorithm, set_of_text)
+        my_learn = Learn()
+        my_learn.learn(name, algorithm, set_of_text)
         return redirect('lk')
 
     return render(request, 'learning.html.jinja2', {'set_of_texts': set_of_texts})

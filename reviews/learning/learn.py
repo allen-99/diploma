@@ -1,6 +1,7 @@
 import string
 import warnings
 
+import joblib
 import numpy as np
 import pandas as pd
 import pymorphy2
@@ -79,6 +80,12 @@ class Learn:
             model.name = name
             model.type = algorithm
             model.parameters = svc_params_result
+            joblib.dump(grid_search_kernel, f"{name}.pkl")
+            joblib.dump(vectorizer, f"vect/{name}.pkl")
+            data = joblib.load(f"{name}.pkl")
+            vect = joblib.load(f"vect/{name}.pkl")
+            model.vectorizer.save(f"vect/{name}.pkl", vect, save=True)
+            model.model_data.save(f"{name}.pkl", data, save=True)
             model.save()
 
         else:
@@ -102,4 +109,10 @@ class Learn:
             model.name = name
             model.type = algorithm
             model.parameters = svc_params_result
+            joblib.dump(grid_bayes, f"{name}.pkl")
+            joblib.dump(vectorizer, f"vect/{name}.pkl")
+            data = joblib.load(f"{name}.pkl")
+            vect = joblib.load(f"vect/{name}.pkl")
+            model.vectorizer.save(f"vect/{name}.pkl", vect, save=True)
+            model.model_data.save(f"{name}.pkl", data, save=True)
             model.save()
