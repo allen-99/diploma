@@ -2,7 +2,6 @@ import csv
 import json
 from datetime import datetime
 
-import maya
 import numpy as np
 import pytz
 from django.contrib.auth import get_user
@@ -155,18 +154,14 @@ def reviewsadd(request):
                 new_review.text = review['text']
                 print(review['date'])
                 try:
-                    dt = maya.parse(review['date']).datetime()
-                    new_review.date = dt.date()
+                    new_review.date = datetime.strptime(review['date'], '%Y-%m-%dT%H:%M:%S.%fZ')
                 except:
-                    try:
-                        new_review.date = datetime.strptime(review['date'], '%Y-%m-%dT%H:%M:%S.%fZ')
-                    except:
-                        new_review.date = datetime.strptime(review['date'], '%Y-%m-%dT%H:%M:%S%fZ')
+                    new_review.date = datetime.strptime(review['date'], '%Y-%m-%dT%H:%M:%S%fZ')
 
                 new_review.company = company
                 new_review.set = set_of_text
                 new_review.save()
-        
+
         return redirect('company')
 
     return render(request, 'reviews-add.html.jinja2', {'companies': companies})
