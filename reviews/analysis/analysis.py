@@ -30,6 +30,8 @@ class Analysis:
         self.theme_id = theme_id
         self.add_additional = add_additional
 
+    nltk.download('punkt')
+
     def lemmatize_text(self, text):
         stemmer = RussianStemmer()
         words = text.split(",")
@@ -50,7 +52,7 @@ class Analysis:
         matchers = []
         if len(self.theme_id) != 0:
             matchers = self.get_themes()
-            
+
         opinions = []
         for op in matchers:
             opinions.append({op['name']: []})

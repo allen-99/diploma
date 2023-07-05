@@ -3,8 +3,11 @@
 import os
 import sys
 
+import nltk
+
 
 def main():
+    nltk.download('punkt')
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'diploma.settings')
     try:
